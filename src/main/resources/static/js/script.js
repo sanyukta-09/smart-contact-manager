@@ -14,7 +14,7 @@ function changeTheme() {
         const oldTheme = currentTheme
         console.log('clicked');
         currentTheme === "dark" ? currentTheme = "light" : currentTheme = "dark";
-        
+        changePageTheme(oldTheme);
     })
 }
 
@@ -35,5 +35,6 @@ function changePageTheme(){
     document.querySelector('html').classList.remove(oldTheme)
     document.querySelector('html').classList.add(currentTheme);
     //change the text
+    const changeButtonTheme = document.querySelector('#theme_change_button');
     changeButtonTheme.querySelector('span').textContent = currentTheme == "light" ? "Dark" : "Light"
 }

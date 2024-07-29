@@ -6,6 +6,8 @@ import java.util.*;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -17,7 +19,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity(name = "user")
-@Table(name="user")
+@Table(name="users")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -34,6 +36,7 @@ public class User {
     private String password;
     @Column(length = 5000)
     private String about;
+    @Column(length = 5000)
     private String profilePic;
     private String phoneNumber;
     ///information;
@@ -41,11 +44,10 @@ public class User {
     private Boolean emailVerified = false;
     private Boolean phoneVerified = false;
 
-    //
+    @Enumerated(EnumType.STRING)
     private Providers provider= Providers.SELF;
     private String providerUserId;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<Contact> contact= new ArrayList<>();
-
+    private List<Contact> contacts= new ArrayList<>();
 }
